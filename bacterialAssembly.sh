@@ -31,7 +31,7 @@ cd $PROJECT/data/
 ## check quality of raw sequence data
 echo "CHECKING SEQUENCE QUALITY"
 # run fastqc to summarize each fastq file
-fastqc -o $PROJECT/results/fastqc $R1 $R2
+fastqc fastqc $R1 $R2
 mv *.html *.zip $PROJECT/results
 # see more options using fastqc -h
 # unzip results
