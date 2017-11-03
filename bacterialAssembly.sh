@@ -34,22 +34,22 @@ echo "CHECKING SEQUENCE QUALITY"
 fastqc $R1 $R2
 mv *.html *.zip $PROJECT/results
 # see more options using fastqc -h
-# unzip results
-unzip $PROJECT/results/*_fastqc.zip
-# print fastqc summaries to screen
-cat $PROJECT/results/*_fastqc/summary.txt > $PROJECT/results/fastqc_summary.txt
+# summarize results
+echo -n > $PROJECT/results/data_summary.txt
+for x in $R1 $R2
+	do
+		# unzip file
+		unzip $PROJECT/results/$x_fastqc.zip
+		# print fastqc summaries to screen
+		cat $PROJECT/results/fastqc/summary.txt >> $PROJECT/results/data_summary.txt
+		# remove old files
+		rm -rf $PROJECT/results/fastqc
+done
 
 ## filter and trim sequences by quality
 # slashes at end of lines allow entering multi-line commands more easily
 # if entering below chunk manually, copy and paste each line without slash
-java -jar $TRIMMOMATIC/trimmomatic-0.36.jar PE -threads 2 -phred33 $R1 $R2 \
-	paired-$R1 unpaired-$R1 \
-	paired-$R2 unpaired-$R2 \
-	ILLUMINACLIP:$TRIMMOMATIC/adapters/NexteraPE-PE.fa:2:30:10 \ 
-	SLIDINGWINDOW:4:20 LEADING:15 TRAILING:15 HEADCROP:10 MINLEN:50
-# you can alter any of the numbers in the last line to change the thresholds for sequence quality
-# this is the same as above, but without slashes (for easier copying):
-# java -jar $TRIMMOMATIC/trimmomatic-0.36.jar PE -threads 2 -phred33 $R1 $R2 paired-$R1 unpaired-$R1 paired-$R2 unpaired-$R2  ILLUMINACLIP:$TRIMMOMATIC/adapters/NexteraPE-PE.fa:2:30:10 SLIDINGWINDOW:4:20 LEADING:15 TRAILING:15 HEADCROP:10 MINLEN:50
+java -jar $TRIMMOMATIC/trimmomatic-0.36.jar PE -threads 2 -phred33 $R1 $R2 paired-$R1 unpaired-$R1 paired-$R2 unpaired-$R2 ILLUMINACLIP:$TRIMMOMATIC/adapters/NexteraPE-PE.fa:2:30:10 SLIDINGWINDOW:4:20 LEADING:15 TRAILING:15 HEADCROP:10 MINLEN:50
 
 ## recheck quality of raw sequence data
 fastqc paired-*.fastq.gz
