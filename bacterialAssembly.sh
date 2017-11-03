@@ -52,7 +52,8 @@ java -jar $TRIMMOMATIC/trimmomatic-0.36.jar PE -threads 2 -phred33 $R1 $R2 \
 # java -jar $TRIMMOMATIC/trimmomatic-0.36.jar PE -threads 2 -phred33 $R1 $R2 paired-$R1 unpaired-$R1 paired-$R2 unpaired-$R2  ILLUMINACLIP:$TRIMMOMATIC/adapters/NexteraPE-PE.fa:2:30:10 SLIDINGWINDOW:4:20 LEADING:15 TRAILING:15 HEADCROP:10 MINLEN:50
 
 ## recheck quality of raw sequence data
-fastqc -o $PROJECT/results/fastqc paired-*.fastq.gz
+fastqc paired-*.fastq.gz
+mv *.html *.zip $PROJECT/results
 
 ## move back to main project directory
 cd $PROJECT
@@ -77,7 +78,7 @@ makeblastdb -in velvetOut/contigs.fa -dbtype nucl
 ## search (blast) for genes of interest in assembly contigs
 # genes from chromosome: HBD, CRT, BCD, ETFA, ETFB
 # genes from plasmid: ADHE, THIL
-for genes in chromosome_genes.fas plasmid_genes.fas
+for genes in reference/chromosome_genes.fas reference/plasmid_genes.fas
 	do
-		blastn -query $genes -db velvetOut/contigs.fa -outfmt 7 -out BLAST-$genes
+		blastn -query $genes -db velvetOut/contigs.fa -outfmt 7 -out $PROJECT/results/BLAST-$genes
 done
