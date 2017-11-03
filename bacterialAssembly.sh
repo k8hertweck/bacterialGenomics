@@ -26,7 +26,7 @@ cd $PROJECT
 mkdir results results/fastqc
 
 ## move to data directory
-cd $PROJECT/data/
+cd $PROJECT/data
 
 ## check quality of raw sequence data
 echo "CHECKING SEQUENCE QUALITY"
@@ -35,7 +35,7 @@ fastqc $R1 $R2
 mv *.html *.zip $PROJECT/results
 # see more options using fastqc -h
 # unzip results
-unzip $PROJECT/results/fastqc *.zip
+unzip $PROJECT/results/*_fastqc.zip
 # print fastqc summaries to screen
 cat $PROJECT/results/*_fastqc/summary.txt > $PROJECT/results/fastqc_summary.txt
 
@@ -66,7 +66,7 @@ velveth velvetOut 31 -shortPaired -fastq -separate data/paired-$R1 data/paired-$
 # find more info about command with: velvetg -h
 velvetg velvetOut
 # copy resulting contigs to results
-cp VelvetOut/contigs.fa results/contigs.fa
+cp velvetOut/contigs.fa results/contigs.fa
 
 ## count number of contigs 
 echo "NUMBER OF CONTIGS" > results/num_contigs.txt
