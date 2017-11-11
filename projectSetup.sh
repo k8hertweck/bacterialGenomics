@@ -10,20 +10,23 @@ PROJECT=`pwd`
 # download and install trimmomatic
 cd # change to home directory (appropriate for software installation)
 wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.36.zip
-# if you already have trimmomatic installed, select A to overwrite
+# if you already have trimmomatic installed, select A when prompted for an answer
 unzip Trimmomatic-0.36.zip
+# you can test to see if trimmomatic installed correctly by running the following:
+# java -jar ~/Trimmomatic-0.36/trimmomatic-0.36.jar -version
+# if the software is correctly installed, "0.36" should be printed to the screen
 
 # setup data directory
 cd $PROJECT
 mkdir data
-cd data
 
 # download data from URL
-wget $1
-wget $2
+wget data/$1
+wget data/$2
 
 ## check data download: view first few lines of each fastq file
-# zcat prints contents of file to screen if file is gzipped 
-#zcat $R1 | head  
-#zcat $R2 | head
-# zcat works in GitBash and Linux (e.g., cloud instances), but Macs use gzcat instead
+#for x in data/*.fastq.gz
+#	do
+#		echo $x
+#		zcat $x | head
+#done
