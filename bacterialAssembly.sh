@@ -2,7 +2,7 @@
 
 ## genomics for bacterial sequences
 
-## usage: bash bacterialAssembly.sh R1_FILE.fq.gz R2_FILE.fq.gz
+## usage: bash bacterialAssembly.sh FILENAME_R1_001.fastq.gz FILENAME_R2_001.fastq.gz
 # 	run from project directory
 # 	additional explanations included in comments below
 ## dependencies (installed with projectSetup.sh):
@@ -10,6 +10,7 @@
 ## dependencies (pre-installed in BioLinux)
 # 	fastqc: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 # 	velvet: https://www.ebi.ac.uk/~zerbino/velvet/Manual.pdf
+#	blast: 
 
 ## set variables for read data files
 R1=$1
@@ -67,10 +68,6 @@ velveth velvetOut 31 -shortPaired -fastq -separate data/paired-$R1 data/paired-$
 velvetg velvetOut
 # copy resulting contigs to results
 cp velvetOut/contigs.fa results/contigs.fa
-
-## count number of contigs 
-echo "NUMBER OF CONTIGS" > results/num_contigs.txt
-grep ">" velvetOut/contigs.fa | wc -l >> results/num_contigs.txt
 
 ## create blast database from velvet assembly
 makeblastdb -in velvetOut/contigs.fa -dbtype nucl
