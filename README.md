@@ -51,6 +51,9 @@ archive and compress the directory as follows:
 * `ARCHIVE` is the name of the directory you want to compress
 	
 Other notes:
+* There are a few hidden files/directories in this project (e.g., `.git/` and `.gitignore`; 
+you do not need to work with them.
 * To log out of your cloud instance, type `exit` or simply close the shell window.
 * You can have multiple bash shells open at once; it is common to have one open for 
 your cloud instance and another to access your local computer
+
