@@ -9,6 +9,7 @@ PROJECT=`pwd`
 
 # download and install trimmomatic
 cd # change to home directory (appropriate for software installation)
+echo " SETTING UP TRIMMOMATIC"
 wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.36.zip
 # if you already have trimmomatic installed, select A when prompted for an answer
 unzip Trimmomatic-0.36.zip
@@ -17,12 +18,16 @@ unzip Trimmomatic-0.36.zip
 # if the software is correctly installed, "0.36" should be printed to the screen
 
 # setup data directory
+echo "SETTING UP DATA DIRECTORY"
 cd $PROJECT
 mkdir data
 
 # download data from URL
-wget data/$1
-wget data/$2
+echo "DOWNLOADING DATA"
+wget $1
+wget $2
+echo "MOVING DATA"
+mv *.fastq.gz data/
 
 ## check data download: view first few lines of each fastq file
 #for x in data/*.fastq.gz
