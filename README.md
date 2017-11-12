@@ -27,8 +27,8 @@ Running project scripts:
 * Obtain the scripts from GitHub using: 
 `git clone https://github.com/k8hertweck/bacterialGenomics.git`
 * You should now see a `bacterialGenomics` directory
-* Execute all scripts from within that directory following usage instructions described 
-within each script, and in the following order:
+* Change your working directory to `bacterialGenomics` prior to executing all scripts, 
+following usage instructions described within each script's comments, and in the following order:
 	* `projectSetup.sh`
 	* `bacterialAssembly.sh`
 	* `bacterialReadMapping.sh`
