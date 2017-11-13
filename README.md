@@ -4,12 +4,12 @@ This repository includes example scripts that model possible steps in a genomics
 designed to be implemented on virtual machines available through 
 [XSEDE's Jetstream environment](https://portal.xsede.org/jetstream).
 
-To access your cloud instance, you will use the following software:
+### To access your cloud instance, you will use the following software:
 
 * Windows: GitBash
 * Mac: Terminal 
 
-Log on to your instance using secure shell:
+### Log on to your instance using secure shell:
 
 * `ssh USERNAME@IP.ADDRESS`
 * `USERNAME` is `hertweck` for all cloud instances in this class
@@ -22,7 +22,7 @@ which was also included in an email from your instructor.
 Remember that you will not see anything appear on the screen as you type your password 
 (this is ok!).
 
-Running project scripts:
+### Running project scripts:
 
 * Obtain the scripts from GitHub using: 
 `git clone https://github.com/k8hertweck/bacterialGenomics.git`
@@ -37,7 +37,7 @@ which should be run in the following order:
 being implemented. You should also consult the project documentation and rubric on Canvas 
 for more information on tasks to be completed.
 
-Transferring data from Jetstream to your local computer:
+### Transferring data from Jetstream to your local computer:
 
 * Start in a shell on your local computer
 * Use secure copy to transfer files to home directory of cloud instance: 
@@ -52,7 +52,8 @@ archive and compress the directory as follows:
 `tar -cvzf DIRECTORY.tar.gz DIRECTORY/`
 * `ARCHIVE` is the name of the directory you want to compress
 	
-Other notes:
+### Other notes:
+
 * There are a few hidden files/directories in this project (e.g., `.git/` and `.gitignore`; 
 you do not need to work with them.
 * To log out of your cloud instance, type `exit` or simply close the shell window.
