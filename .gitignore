@@ -2,6 +2,7 @@ data/
 results/
 velvetOut/
 reference/CaceATCC824.fas
+reference/CaceATCC824.fas.*
 mapping/
 submission/
 
