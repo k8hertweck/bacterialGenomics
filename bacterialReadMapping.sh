@@ -40,7 +40,7 @@ echo "SUMMARIZE READ MAPPING"
 samtools flagstat mapping/mappedReads.sorted.bam > results/mappedReads.summary.txt
 # add depth of coverage to summary file
 echo "CALCULATING DEPTH OF COVERAGE"
-samtools depth mapping/mappedReads.sorted.bam | awk '{sum+=$3} END { print "Average coverage= ",sum/NR}' >> results/reference.summary.txt
+samtools depth mapping/mappedReads.sorted.bam | awk '{sum+=$3} END { print "Average coverage= ",sum/NR}' >> results/mappedReads.summary.txt
 
 ## variant calling
 # find SNPs in reads relative to reference
