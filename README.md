@@ -57,4 +57,10 @@ you do not need to work with them.
 * To log out of your cloud instance, type `exit` or simply close the shell window.
 * You can have multiple bash shells open at once; it is common to have one open for 
 your cloud instance and another to access your local computer
-
+* If you execute a script multiple times, you may receive minor error messages 
+(e.g., `mkdir: cannot create directory`), but the script should still run to completion
+* If you encounter difficulty and would like to start over completely, 
+execute the following commands:
+	* `cd`
+	* `rm -rf bacterialGenomics/ Trimmomatic-0.36.zip Trimmomatic-0.36/`
+	* Then you should be able to start fresh with the `git clone` command described above
