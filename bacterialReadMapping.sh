@@ -1,0 +1,48 @@
+#!/bin/bash
+
+## variant calling of bacterial genomes using read mapping
+
+## usage: bash bacterialReadMapping.sh
+# 	run from project directory
+## dependencies (pre-installed in BioLinux)
+# 	bwa: read mapping, http://bio-bwa.sourceforge.net
+# 	samtools: ngs manipulation, http://www.htslib.org
+#	bcfutils and vcfutils.pl: variant call analysis, https://samtools.github.io/bcftools/bcftools.html
+
+# set variable for location of project directory (where script is executed)
+PROJECT=`pwd`
+
+# set variable for location of vcfutils.pl
+VCF=/usr/share/samtools
+
+# create directory for intermediate mapping files
+mkdir mapping
+
+# index reference genome
+# bwa and samtools require the index to be referenced to perform comparisons with reads
+cd reference
+bwa index CaceATCC824.fas
+samtools faidx CaceATCC824.fas
+cd $PROJECT
+
+# map reads to reference: find locations in known genome where reads match
+bwa mem -t 2 reference/CaceATCC824.fas data/paired*R1_001.fastq.gz data/paired*R2_001.fastq.gz > mapping/mappedReads.sam
+
+# convert sam to sorted bam format
+samtools view -bS mapping/mappedReads.sam | samtools sort - mapping/mappedReads.sorted.bam
+
+# print simple summary statistics for read mapping
+samtools flagstat mapping/mappedReads.sorted.bam > results/mappedReads.summary.txt
+
+# add depth of coverage to summary file
+samtools depth mapping/mappedReads.sorted.bam | awk '{sum+=$3} END { print "Average coverage= ",sum/NR}' >> results/reference.summary.txt
+
+# find SNPs in reads relative to reference
+samtools mpileup -ugf reference/CaceATCC824.fas mapping/mappedReads.sorted.bam > mapping/var.raw.bcf
+
+# filter SNPs and keep only those with substantial data
+bcftools view mapping/var.raw.bcf | $VCF/vcfutils.pl varFilter -D100 > results/var.flt.vcf
+
+# summarize SNPs
+echo -e "QUAL\t#non-indel\t#SNPs\t#transitions\t#joint\tts/tv\t#joint/#ref #joint/#non-indel" > results/snps.out.txt
+$VCF/vcfutils.pl qstats results/var.flt.vcf >> results/snps.out.txt
