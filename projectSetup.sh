@@ -2,14 +2,15 @@
 
 ## installing software and downloading data
 
-# usage: bash setup.sh URL_R1 URL_R2
-# URL_R1 and URL_R2 represent the names of your two data files (forward and reverse reads)
-# URLs should have been sent to you via email
+## usage: bash setup.sh URL_R1 URL_R2
+# 	URL_R1 and URL_R2 represent the names of your two data files (forward and reverse reads)
+# 	URLs should have been sent to you via email
+# 	run from project directory
 
-# assign variable for location of project directory
+## assign variable for location of project directory
 PROJECT=`pwd`
 
-# download and install trimmomatic
+## download and install trimmomatic
 # trimmomatic is the only software we'll use that is not already installed in BioLinux
 cd # change to home directory (appropriate for software installation)
 echo " SETTING UP TRIMMOMATIC"
@@ -20,12 +21,12 @@ unzip Trimmomatic-0.36.zip
 # java -jar ~/Trimmomatic-0.36/trimmomatic-0.36.jar -version
 # if the software is correctly installed, "0.36" should be printed to the screen
 
-# setup data directory
+## set up data directory
 echo "SETTING UP DATA DIRECTORY"
 cd $PROJECT
 mkdir data
 
-# download sequence data (fastqc) from URL
+## download sequence data (fastqc) from URL
 echo "DOWNLOADING DATA"
 wget $1
 wget $2
@@ -39,7 +40,7 @@ mv *.fastq.gz data/
 #		zcat $x | head
 #done
 
-# download reference sequence 
+## download reference sequence 
 # this file was too large to include on GitHub with the other references
 echo "DOWNLOADING CLOSTRIDIUM REFERENCE"
 wget https://www.dropbox.com/s/ty475u1rf9qwygi/CaceATCC824.fas

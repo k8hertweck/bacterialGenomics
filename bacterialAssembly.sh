@@ -22,7 +22,7 @@ PROJECT=`pwd`
 ## set variable for Trimmomatic (trimmomatic installed using setup.sh)
 TRIMMOMATIC=~/Trimmomatic-0.36
 
-# set up project directory for analysis
+## set up project directory for analysis
 cd $PROJECT
 mkdir results results/fastqc
 
@@ -92,4 +92,3 @@ for genes in chromosome_genes.fas plasmid_genes.fas
 	do
 		blastn -query $genes -db $PROJECT/velvetOut/contigs.fa -outfmt 7 -out $PROJECT/results/BLAST-$genes
 done
-
