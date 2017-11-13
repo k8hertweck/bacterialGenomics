@@ -3,8 +3,9 @@
 ## genomics for bacterial sequences
 
 ## usage: bash bacterialAssembly.sh FILENAME_R1_001.fastq.gz FILENAME_R2_001.fastq.gz
-# 	run from project directory
-# 	additional explanations included in comments below
+# 	the two input file names can be found by listing the files in data/
+#	run from project directory
+# 	this script will take several minutes to run and lots of text will be printed to the screen
 ## dependencies (installed with projectSetup.sh):
 # 	Trimmomatic: http://www.usadellab.org/cms/?page=trimmomatic 
 ## dependencies (pre-installed in BioLinux)

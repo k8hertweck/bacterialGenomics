@@ -4,6 +4,7 @@
 
 ## usage: bash bacterialReadMapping.sh
 # 	run from project directory
+#	this script will take several minutes to run and lots of text will be printed to the screen
 ## dependencies (pre-installed in BioLinux)
 # 	bwa: read mapping, http://bio-bwa.sourceforge.net
 # 	samtools: ngs manipulation, http://www.htslib.org

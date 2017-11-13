@@ -6,6 +6,7 @@
 # 	URL_R1 and URL_R2 represent the names of your two data files (forward and reverse reads)
 # 	URLs should have been sent to you via email
 # 	run from project directory
+# 	this script should only take a few moments to run
 
 ## assign variable for location of project directory
 PROJECT=`pwd`
