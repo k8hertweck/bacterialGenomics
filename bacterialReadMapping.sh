@@ -38,7 +38,7 @@ samtools view -bS mapping/mappedReads.sam | samtools sort - mapping/mappedReads.
 # print simple summary statistics for read mapping
 echo "SUMMARIZE READ MAPPING"
 samtools flagstat mapping/mappedReads.sorted.bam > results/mappedReads.summary.txt
-# add depth of coverage to summary file
+# add average depth of coverage to summary file
 echo "CALCULATING DEPTH OF COVERAGE"
 samtools depth mapping/mappedReads.sorted.bam | awk '{sum+=$3} END { print "Average coverage= ",sum/NR}' >> results/mappedReads.summary.txt
 
