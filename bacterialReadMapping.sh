@@ -34,7 +34,7 @@ echo "MAPPING READS"
 bwa mem -t 2 reference/CaceATCC824.fas data/paired*R1_001.fastq.gz data/paired*R2_001.fastq.gz > mapping/mappedReads.sam
 # convert sam to sorted bam format
 echo "CONVERTING SAM TO BAM"
-samtools view -bS mapping/mappedReads.sam | samtools sort - mapping/mappedReads.sorted.bam
+samtools view -bS mapping/mappedReads.sam | samtools sort - mapping/mappedReads.sorted
 # print simple summary statistics for read mapping
 echo "SUMMARIZE READ MAPPING"
 samtools flagstat mapping/mappedReads.sorted.bam > results/mappedReads.summary.txt
