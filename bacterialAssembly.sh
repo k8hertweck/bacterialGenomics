@@ -35,17 +35,20 @@ echo "CHECKING SEQUENCE QUALITY"
 fastqc $R1 $R2
 mv *.html *.zip $PROJECT/results
 # see more options using fastqc -h
-# summarize results
-echo -n > $PROJECT/results/data_summary.txt
-for x in $R1 $R2
+# summarize quality assessment of raw data
+cd $PROJECT/results
+echo -n > data_summary.txt
+for x in Cace*.zip
 	do
+		echo $x >> data_summary.txt
 		# unzip file
-		unzip $PROJECT/results/$x_fastqc.zip
+		unzip $x
 		# print fastqc summaries to screen
-		cat $PROJECT/results/fastqc/summary.txt >> $PROJECT/results/data_summary.txt
+		cat *fastqc/summary.txt >> data_summary.txt
 		# remove old files
-		rm -rf $PROJECT/results/fastqc
+		rm -rf *fastqc
 done
+cd $PROJECT/data
 
 ## filter and trim sequences by quality
 # slashes at end of lines allow entering multi-line commands more easily
@@ -55,6 +58,15 @@ java -jar $TRIMMOMATIC/trimmomatic-0.36.jar PE -threads 2 -phred33 $R1 $R2 paire
 ## recheck quality of raw sequence data
 fastqc paired-*.fastq.gz
 mv *.html *.zip $PROJECT/results
+# summarize quality assessment of trimmed data (paired files only)
+cd $PROJECT/results
+for x in paired-*.zip
+	do
+		echo $x >> data_summary.txt
+		unzip $x
+		cat *fastqc/summary.txt >> data_summary.txt
+		rm -rf *fastqc
+done
 
 ## move back to main project directory
 cd $PROJECT
@@ -75,7 +87,9 @@ makeblastdb -in velvetOut/contigs.fa -dbtype nucl
 ## search (blast) for genes of interest in assembly contigs
 # genes from chromosome: HBD, CRT, BCD, ETFA, ETFB
 # genes from plasmid: ADHE, THIL
-for genes in reference/chromosome_genes.fas reference/plasmid_genes.fas
+cd reference
+for genes in chromosome_genes.fas plasmid_genes.fas
 	do
-		blastn -query $genes -db velvetOut/contigs.fa -outfmt 7 -out $PROJECT/results/BLAST-$genes
+		blastn -query $genes -db $PROJECT/velvetOut/contigs.fa -outfmt 7 -out $PROJECT/results/BLAST-$genes
 done
+
