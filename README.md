@@ -28,10 +28,11 @@ Running project scripts:
 `git clone https://github.com/k8hertweck/bacterialGenomics.git`
 * You should now see a `bacterialGenomics` directory
 * Change your working directory to `bacterialGenomics` prior to executing all scripts, 
-following usage instructions described within each script's comments, and in the following order:
+which should be run in the following order:
 	* `projectSetup.sh`
 	* `bacterialAssembly.sh`
 	* `bacterialReadMapping.sh`
+* Each script includes specific USAGE information that tells you how to execute it
 * Please look through the comments in each script carefully to discern the processes 
 being implemented. You should also consult the project documentation and rubric on Canvas 
 for more information on tasks to be completed.
