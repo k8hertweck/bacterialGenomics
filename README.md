@@ -38,6 +38,7 @@ being implemented. You should also consult the project documentation and rubric 
 for more information on tasks to be completed.
 
 Transferring data from Jetstream to your local computer:
+
 * Start in a shell on your local computer
 * Use secure copy to transfer files to home directory of cloud instance: 
 `scp USERNAME@IP.ADDRESS:PATH/TO/FILENAME .`
@@ -57,6 +58,10 @@ you do not need to work with them.
 * To log out of your cloud instance, type `exit` or simply close the shell window.
 * You can have multiple bash shells open at once; it is common to have one open for 
 your cloud instance and another to access your local computer
+* If you accidentally execute a command and do not want it to run to completion, use 
+`control + c` (but if a script has partially executed, files may still be affected)
+* If the network connection (e.g., internet) stalls out while you are connected to your 
+cloud instance and running a script, you may need to log back in and rerun the script
 * If you execute a script multiple times, you may receive minor error messages 
 (e.g., `mkdir: cannot create directory`), but the script should still run to completion
 * If you encounter difficulty and would like to start over completely, 
