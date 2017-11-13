@@ -57,6 +57,10 @@ archive and compress the directory as follows:
 * There are a few hidden files/directories in this project (e.g., `.git/` and `.gitignore`; 
 you do not need to work with them.
 * To log out of your cloud instance, type `exit` or simply close the shell window.
+* You can create and edit text files in the shell using `nano` by typing 
+`nano FILENAME` (and use `control + q` to exit). More information on `nano` can be found 
+[here](https://www.howtoforge.com/linux-nano-command/). Remember that `nano` will work on 
+the cloud instances and locally on Macs, but is not currently available in GitBash.
 * You can have multiple bash shells open at once; it is common to have one open for 
 your cloud instance and another to access your local computer
 * If you accidentally execute a command and do not want it to run to completion, use 
