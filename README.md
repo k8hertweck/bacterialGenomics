@@ -40,7 +40,7 @@ for more information on tasks to be completed.
 ### Transferring data from Jetstream to your local computer:
 
 * Start in a shell on your local computer
-* Use secure copy to transfer files to home directory of cloud instance: 
+* Use secure copy (`scp`) to transfer files to home directory of cloud instance: 
 `scp USERNAME@IP.ADDRESS:PATH/TO/FILENAME .`
 * `USERNAME` and `IP.ADDRESS` are the same as used for login
 * `PATH/TO/FILENAME` is the location and filename for what you would like to download
