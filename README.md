@@ -51,7 +51,7 @@ and type `pwd`
 * If you are attempting to download an entire directory, it is recommended to 
 archive and compress the directory as follows: 
 	* `tar -cvzf DIRECTORY.tar.gz DIRECTORY/`
-* `ARCHIVE` is the name of the directory you want to compress
+	* `DIRECTORY` is the name of the directory you want to compress
 	
 ### Other notes:
 
