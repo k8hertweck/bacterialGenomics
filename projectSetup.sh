@@ -2,7 +2,7 @@
 
 ## installing software and downloading data
 
-## usage: bash setup.sh URL_R1 URL_R2
+## usage: bash projectSetup.sh URL_R1 URL_R2
 # 	URL_R1 and URL_R2 represent the names of your two data files (forward and reverse reads)
 # 	URLs should have been sent to you via email
 # 	run from project directory
